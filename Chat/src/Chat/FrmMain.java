@@ -11,14 +11,16 @@ import javax.swing.JTable;
 import javax.swing.BoxLayout;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
-import net.miginfocom.swing.MigLayout;
-import javax.swing.SwingConstants;
 import java.awt.Component;
 import javax.swing.Box;
 import java.awt.Dimension;
 
 public class FrmMain extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable tbContacts;
 
@@ -65,19 +67,19 @@ public class FrmMain extends JFrame {
 		
 		JPanel pnlButtons = new JPanel();
 		contentPane.add(pnlButtons, BorderLayout.EAST);
-		pnlButtons.setLayout(new MigLayout("", "[99px][]", "[25px][25px][25px][25px][][][]"));
+		pnlButtons.setLayout(new BoxLayout(pnlButtons, BoxLayout.Y_AXIS));
 		
 		JButton btnNewContact = new JButton("Add Contact");
-		pnlButtons.add(btnNewContact, "cell 0 0,alignx left,aligny center");
+		pnlButtons.add(btnNewContact);
 		
 		JButton btnDelContact = new JButton("Delete Contact");
-		pnlButtons.add(btnDelContact, "cell 0 1,alignx left,aligny center");
+		pnlButtons.add(btnDelContact);
 		
 		JButton btnChat = new JButton("Chat");
-		pnlButtons.add(btnChat, "cell 0 2,alignx left,aligny center");
+		pnlButtons.add(btnChat);
 		
 		JButton btnClose = new JButton("Close");
-		pnlButtons.add(btnClose, "cell 0 3,alignx left,aligny center");
+		pnlButtons.add(btnClose);
 		
 		Component raNorth = Box.createRigidArea(new Dimension(20, 20));
 		contentPane.add(raNorth, BorderLayout.NORTH);
