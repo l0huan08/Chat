@@ -19,11 +19,11 @@ public class Message {
 	public MessageType m_MessageType;
 
 	public Message(){
-
-	}
-
-	public void finalize() throws Throwable {
-
+		type = MessageType.ChatText;
+		srcName = null;
+		srcIp = null;
+		destName = null;
+		destIp = null;
 	}
 
 	public MessageType getType(){
