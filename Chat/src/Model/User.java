@@ -1,5 +1,6 @@
 package Model;
 
+import java.util.HashMap;
 import java.util.Map;
 /**
  * Chat user.
@@ -27,11 +28,10 @@ public class User {
 	private Map<Integer, User> contacts;
 
 	public User(){
-
-	}
-
-	public void finalize() throws Throwable {
-
+		id = 0;
+		name = new String("user");
+		ip = new String("");
+		contacts = new HashMap<Integer, User>();
 	}
 
 	/**
@@ -94,8 +94,8 @@ public class User {
 	 * 
 	 * @param userId
 	 */
-	public void getContact(int userId){
-
+	public User getContact(int userId){
+		return contacts.get(userId);
 	}
 
 	/**
@@ -104,7 +104,8 @@ public class User {
 	 * @param user
 	 */
 	public boolean addContact(User user){
-		return false;
+		contacts.put(user.getId(), user); // always can put in. If there is a old user with the same id, replace it.
+		return true;
 	}
 
 	/**
@@ -112,36 +113,11 @@ public class User {
 	 * 
 	 * @param user
 	 */
-	public boolean removeContact(User user){
-		return false;
+	public boolean removeContact(int userId){
+		User r = contacts.remove(userId);
+		return (r!=null);
 	}
 
-	/**
-	 * accept an AddContactRequest from another user.
-	 * 
-	 * @param requestUser    the user who sent the AddContact request
-	 */
-	public void acceptAddContact(User requestUser){
-
-	}
-
-	/**
-	 * refuse an AddContactRequest from another user.
-	 * 
-	 * @param requestUser    The user who sent the AddContact request
-	 */
-	public void refuseAddContact(User requestUser){
-
-	}
-
-	/**
-	 * send a normal text message to another user.
-	 * 
-	 * @param destUser
-	 * @param text
-	 */
-	public boolean sendMessage(User destUser, String text){
-		return false;
-	}
+	
 
 }
