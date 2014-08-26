@@ -4,16 +4,28 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
 import java.awt.BorderLayout;
 import java.awt.Font;
+
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+
 import java.awt.Component;
+
 import javax.swing.Box;
+
+import Model.User;
+
 import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 public class FrmLogin {
 
@@ -82,6 +94,7 @@ public class FrmLogin {
 		pnlIP.add(lblIP);
 		
 		txtIP = new JTextField();
+		txtIP.setEditable(false);
 		txtIP.setForeground(Color.RED);
 		pnlIP.add(txtIP);
 		txtIP.setColumns(10);
@@ -93,10 +106,48 @@ public class FrmLogin {
 		frmLogin.getContentPane().add(pnlButtons, BorderLayout.SOUTH);
 		
 		JButton btnLogin = new JButton("Login");
+		btnLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				User user = new User();
+				user.setId(0);
+				InetAddress ip=null;
+				try {
+					ip = InetAddress.getLocalHost();
+				} catch (UnknownHostException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, 
+							"Cannot start local chat server, please make sure you connect to network.",
+							"login failed",
+							JOptionPane.ERROR_MESSAGE );
+				}
+				
+				user.setIp(ip.getHostAddress());
+				FrmMain frmMain = new FrmMain(user);
+				frmMain.setVisible(true);
+			}
+		});
 		pnlButtons.add(btnLogin);
 		
 		JButton btnExit = new JButton("Exit");
+		btnExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
 		pnlButtons.add(btnExit);
+		
+		
+		
+		// ---------- init ------------
+		InetAddress ip=null;
+		try {
+			ip = InetAddress.getLocalHost();
+			txtIP.setText( ip.getHostAddress() );
+		} catch (UnknownHostException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	}
 
 }

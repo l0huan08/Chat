@@ -11,8 +11,13 @@ import javax.swing.JTable;
 import javax.swing.BoxLayout;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
+
 import java.awt.Component;
+
 import javax.swing.Box;
+
+import Model.User;
+
 import java.awt.Dimension;
 
 public class FrmMain extends JFrame {
@@ -23,6 +28,8 @@ public class FrmMain extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable tbContacts;
+	
+	private User user;
 
 	/**
 	 * Launch the application.
@@ -40,10 +47,16 @@ public class FrmMain extends JFrame {
 		});
 	}
 
+	protected FrmMain() {
+		this(null);
+	}
+	
 	/**
 	 * Create the frame.
 	 */
-	public FrmMain() {
+	public FrmMain(User user) {
+		this.user = user;
+		
 		setTitle("Chating Home");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
