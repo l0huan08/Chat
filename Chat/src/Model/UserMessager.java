@@ -57,6 +57,13 @@ public class UserMessager {
 	}
 
 	/**
+	 * receive message, will block until a message received
+	 */
+	public Message receiveMessage(){
+		return station.receive();
+	}
+	
+	/**
 	 * send a normal text message to another user.
 	 * 
 	 * @param destUser

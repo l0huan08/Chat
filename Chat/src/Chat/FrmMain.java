@@ -127,6 +127,12 @@ public class FrmMain extends JFrame {
 		JButton btnNewContact = new JButton("Add Contact");
 		btnNewContact.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (FrmMain.this.user==null)
+				{
+					JOptionPane.showMessageDialog(null, "current user not exists.","Failed", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				
 				DlgAddContact dlgAddContact =new DlgAddContact(FrmMain.this.user);
 				dlgAddContact.setModal(true);
 		    	
@@ -293,6 +299,12 @@ public class FrmMain extends JFrame {
 	
 	
 	private void addContact(User contact) {
+		if (user==null)
+		{
+			JOptionPane.showMessageDialog(null, "current user not exists.","Failed", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+		
 		if (contact==null) {
 			JOptionPane.showMessageDialog(null, "Cannot add null user!");
 			return;
@@ -315,7 +327,7 @@ public class FrmMain extends JFrame {
 		//need return value
 		boolean suc = this.user.removeContact(contact.getId());
 		if (!suc) {
-			JOptionPane.showMessageDialog(null, "User not exists.","Failed", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "current user not exists.","Failed", JOptionPane.ERROR_MESSAGE);
 		} else
 		{
 			JOptionPane.showMessageDialog(null, "user "+contact.getName()+" deleted.");

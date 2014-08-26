@@ -6,7 +6,7 @@ package Network;
  * @version 1.0
  * @created 25-°ËÔÂ-2014 13:32:38
  */
-public class IP {
+public class IP implements java.io.Serializable {
 
 	public static final int DEFAULT_PORT=2222;
 	
@@ -48,8 +48,8 @@ public class IP {
 			}
 			
 			// parse IP
-			String strIp = str.substring(0, ipLength+1);
-			String[] strIps = strIp.split(".");
+			String strIp = str.substring(0, ipLength);
+			String[] strIps = strIp.split("\\.");
 			int[] ips = new int[4];
 			if (strIps.length!=4)
 				isValid=false; //not valid

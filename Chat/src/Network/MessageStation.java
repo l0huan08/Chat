@@ -39,7 +39,11 @@ public class MessageStation {
 			ip = IP.fromString(strIp);
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
+			return;
 		}
+		
+		if (ip==null)
+			return;
 		
 		try {
 			receiverSocket= new DatagramSocket(ip.getPort()); // recieverSocket is listen to A's own ip:port
@@ -57,6 +61,9 @@ public class MessageStation {
 	 * @param message
 	 */
 	public boolean send(IP dstIp, Message message){
+		if (senderSocket==null)
+			return false;
+		
 		// create data bytes from message object
 		ObjectOutputStream obs = null;
 		ByteArrayOutputStream bs = new ByteArrayOutputStream();
@@ -83,6 +90,9 @@ public class MessageStation {
 	 * Waiting and receive a message. Blocking until a message received.
 	 */
 	public Message receive(){
+		if (receiverSocket==null)
+			return null;
+		
 		// receive a packet
 		DatagramPacket dataPacket = new DatagramPacket(dataReceiveBuf,DATA_RECEIVE_BUF_SIZE); // Can receive a max of 7 bytes
 		try {

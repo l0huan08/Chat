@@ -122,6 +122,7 @@ public class FrmLogin {
 							JOptionPane.ERROR_MESSAGE );
 				}
 				
+				user.setName(txtName.getText());
 				user.setIp(ip.getHostAddress());
 				FrmMain frmMain = new FrmMain(user);
 				frmMain.setVisible(true);

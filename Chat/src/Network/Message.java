@@ -5,18 +5,18 @@ package Network;
  * @version 1.0
  * @created 25-°ËÔÂ-2014 13:32:38
  */
-public class Message {
+public class Message implements java.io.Serializable {
 
 	private MessageType type;
 	private String srcName;
 	private IP srcIp;
 	private String destName;
 	private IP destIp;
+	
 	/**
 	 * message content
 	 */
 	private String content;
-	public MessageType m_MessageType;
 
 	public Message(){
 		type = MessageType.ChatText;
