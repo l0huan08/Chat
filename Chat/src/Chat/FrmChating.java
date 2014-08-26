@@ -54,14 +54,15 @@ public class FrmChating extends JFrame {
 		private UserMessager receiverMessager; 
 		private User receiveUser;
 		
-		public Receiver(User receiveUser) {
+		public Receiver(User receiveUser, UserMessager receiverMessager) {
 			this.receiveUser=receiveUser;
+			this.receiverMessager = receiverMessager;
 		}
 		
 		@Override
 		public void run() {
-			receiverMessager = new UserMessager();
-			receiverMessager.setUser(receiveUser);
+			//receiverMessager = new UserMessager();
+			//receiverMessager.setUser(receiveUser);
 			
 			while (true) {
 				Message msg = receiverMessager.receiveMessage();
@@ -107,6 +108,7 @@ public class FrmChating extends JFrame {
 			fromMessager=new UserMessager();
 			fromMessager.setUser(fromUser);
 		}
+		
 		
 		sbHistory = new StringBuilder();
 		historyMessages = new ArrayList<String>();
@@ -223,6 +225,10 @@ public class FrmChating extends JFrame {
 		//--------------- init -------------------------
 		initHeader();
 		
+
+		//------------- begin listen new messages -----
+		Receiver receiver = new Receiver(fromUser,fromMessager);
+		Thread receiveThread = new Thread(receiver);
 	}
 	
 	private void initHeader() {
