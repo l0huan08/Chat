@@ -6,16 +6,22 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.GridLayout;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.Box;
 import javax.swing.JButton;
+
 import java.awt.Component;
 import java.awt.Dimension;
+
 import javax.swing.SpringLayout;
+
+import Model.User;
 
 public class FrmChating extends JFrame {
 
@@ -25,6 +31,9 @@ public class FrmChating extends JFrame {
 	private JTextField txtTo;
 	private JTextField txtToIP;
 
+	private User fromUser; // the current user
+	private User toUser; // the user to chat with
+	
 	/**
 	 * Launch the application.
 	 */
@@ -32,7 +41,7 @@ public class FrmChating extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FrmChating frame = new FrmChating();
+					FrmChating frame = new FrmChating(null,null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -44,7 +53,10 @@ public class FrmChating extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public FrmChating() {
+	public FrmChating(User fromUser, User toUser) {
+		this.fromUser=fromUser;
+		this.toUser=toUser;
+		
 		setTitle("Chating");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 456, 415);

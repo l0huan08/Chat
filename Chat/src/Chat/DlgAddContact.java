@@ -10,20 +10,27 @@ import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+
 import javax.swing.BoxLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JDialog;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SpringLayout;
 
-public class DlgAddContact extends JFrame {
+import Model.User;
+
+public class DlgAddContact extends JDialog {
 
 	private JPanel contentPane;
 	private JTextField txtName;
 	private JTextField txtIP;
+	
+	private User user;
 
 	/**
 	 * Launch the application.
@@ -32,7 +39,7 @@ public class DlgAddContact extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					DlgAddContact frame = new DlgAddContact();
+					DlgAddContact frame = new DlgAddContact(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -44,9 +51,11 @@ public class DlgAddContact extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public DlgAddContact() {
+	public DlgAddContact(User user) {
+		this.user = user;
+		
 		setTitle("Add Contact");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -105,5 +114,15 @@ public class DlgAddContact extends JFrame {
 		
 		Component horizontalGlue_1 = Box.createHorizontalGlue();
 		horizontalBox.add(horizontalGlue_1);
+	}
+	
+	public boolean isActionAdd() {
+		// TODO: need implemented
+		return false;
+	}
+	
+	public User getContact() {
+		// TODO: need implemented
+		return null;
 	}
 }
