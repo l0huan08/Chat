@@ -43,7 +43,7 @@ public class FrmMain extends JFrame {
 	private boolean isResponseTbContactSelecetedChanged=true;
 	private DefaultTableModel tbContactModel;
 	
-	private final int N_Table_Contact_Columns = 3;
+	private final int N_Table_Contact_Columns = 4;
 	private final String[] Table_Contact_ColumnTitle = { "userId", "userName", "userIP", "userObj" };	
 	private final int Table_Contact_UserObjColIndex=3; //the column index of user object in the contact table
 	// --------------------------------------
@@ -205,7 +205,7 @@ public class FrmMain extends JFrame {
 		Object rowData[][] = {};
 		tbContactModel = new DefaultTableModel(rowData,
 				Table_Contact_ColumnTitle);
-		tbContact= new JTable();
+		//tbContact= new JTable();
 		tbContact.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tbContact.setModel(tbContactModel);
 		SelectionListener listener = new SelectionListener(tbContact);

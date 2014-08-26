@@ -58,7 +58,7 @@ public class FrmChating extends JFrame {
 		this.toUser=toUser;
 		
 		setTitle("Chating");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 456, 415);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

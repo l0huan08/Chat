@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.util.UUID;
 
 import javax.swing.BoxLayout;
 import javax.swing.GroupLayout;
@@ -23,6 +24,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SpringLayout;
 
 import Model.User;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class DlgAddContact extends JDialog {
 
@@ -31,7 +34,8 @@ public class DlgAddContact extends JDialog {
 	private JTextField txtIP;
 	
 	private User user;
-
+	private boolean bIsActionAdd=false;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -104,12 +108,24 @@ public class DlgAddContact extends JDialog {
 		horizontalBox.add(horizontalGlue);
 		
 		JButton btnAdd = new JButton("Add");
+		btnAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				bIsActionAdd=true;
+				DlgAddContact.this.setVisible(false);
+			}
+		});
 		horizontalBox.add(btnAdd);
 		
 		Component rigidArea_1 = Box.createRigidArea(new Dimension(20, 20));
 		horizontalBox.add(rigidArea_1);
 		
 		JButton btnCancel = new JButton("Cancel");
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				bIsActionAdd=false;
+				DlgAddContact.this.setVisible(false);
+			}
+		});
 		horizontalBox.add(btnCancel);
 		
 		Component horizontalGlue_1 = Box.createHorizontalGlue();
@@ -117,12 +133,17 @@ public class DlgAddContact extends JDialog {
 	}
 	
 	public boolean isActionAdd() {
-		// TODO: need implemented
-		return false;
+		return bIsActionAdd;
 	}
 	
 	public User getContact() {
-		// TODO: need implemented
-		return null;
+		User usr = new User();
+		UUID id = UUID.randomUUID();
+		int intId = (int)id.getLeastSignificantBits();
+		
+		usr.setId(intId);
+		usr.setName(this.txtName.getText());
+		usr.setIp(this.txtIP.getText());
+		return usr;
 	}
 }
